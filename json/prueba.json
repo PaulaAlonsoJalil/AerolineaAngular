@@ -1,0 +1,128 @@
+{
+  "aeropuertos": [
+    {
+      "id": 1,
+      "nombre": "Berlín Brandeburgo Airport",
+      "codigoIata": "BER"
+    },
+    {
+      "id": 2,
+      "nombre": "Bruselas Airport",
+      "codigoIata": "BRU"
+    },
+    {
+      "id": 3,
+      "nombre": "Madrid Barajas Airport",
+      "codigoIata": "MAD"
+    },
+    {
+      "id": 4,
+      "nombre": "París Orly Airport",
+      "codigoIata": "ORY"
+    },
+    {
+      "id": 5,
+      "nombre": "Roma Fiumicino Airport",
+      "codigoIata": "FCO"
+    }
+  ],
+  "companias": [
+    {
+      "id": 1,
+      "nombre": "Air Berlin",
+      "codigoIata": "AB"
+    },
+    {
+      "id": 2,
+      "nombre": "Iberia Airlines",
+      "codigoIata": "IB"
+    },
+    {
+      "id": 3,
+      "nombre": "Lufthansa",
+      "codigoIata": "LH"
+    }
+  ],
+  "vuelos": [
+    {
+      "id": 1,
+      "origen": "MAD",
+      "destino": "FCO",
+      "companias": [
+        "IB"
+      ],
+      "fechaDesde": "2022-01-01",
+      "fechaHasta": "2022-12-31",
+      "duracion": 2.5
+    },
+    {
+      "origen": "MAD",
+      "destino": "MAD",
+      "companias": [
+        "IB"
+      ],
+      "fechaDesde": "2022-01-10",
+      "fechaHasta": "2022-01-09",
+      "duracion": 0,
+      "id": 2
+    },
+    {
+      "origen": "BER",
+      "destino": "MAD",
+      "companias": [
+        "IB",
+        "LH"
+      ],
+      "fechaDesde": "2022-02-02",
+      "fechaHasta": "2022-02-02",
+      "duracion": 0,
+      "id": 3
+    }
+  ],
+  "reservas": [
+    {
+      "id": 1,
+      "vuelo": 1,
+      "fecha": "2022-04-10",
+      "pasajero": {
+        "nombre": "Luis",
+        "apellidos": "García",
+        "correo": "l.g@acme.com",
+        "telefono": "+34600700800"
+      }
+    },
+    {
+      "vuelo": "1",
+      "fecha": "2022-08-09",
+      "pasajero": {
+        "nombre": "Juan",
+        "apellidos": "Perez",
+        "correo": "juan@gmail.com",
+        "telefono": "121123213"
+      },
+      "id": 2
+    },
+    {
+      "vuelo": "2",
+      "fecha": "2022-08-09",
+      "pasajero": {
+        "nombre": "Julian",
+        "apellidos": "Perez",
+        "correo": "juan@gmail.com",
+        "telefono": "121123213"
+      },
+      "id": 3
+    },
+    {
+      "vuelo": "3",
+      "fecha": "2022-02-02",
+      "pasajero": {
+        "nombre": "uri",
+        "apellidos": "duri",
+        "correo": "uri@duri.com",
+        "telefono": "+52434234"
+      },
+      "id": 4
+    }
+  ]
+}

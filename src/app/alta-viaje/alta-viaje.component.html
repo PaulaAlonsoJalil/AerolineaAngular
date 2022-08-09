@@ -1,0 +1,95 @@
+<div class="container">
+    <h1 class="fs-1 my-4">Crear Vuelo</h1>
+    <form #formulario="ngForm">
+        <div class="mb-3">
+            <label for="origen" class="form-label">Origen</label>
+            <select required class="form-select" id="origen" [(ngModel)]="vuelo.origen" name="origen"
+                aria-describedby="origenHelp" #campoOrigen="ngModel">
+                <option value="{{origen.codigoIata}}" *ngFor="let origen of aeropuertos">{{origen.codigoIata}} -
+                    {{origen.nombre }}</option>
+            </select>
+            <div id="origenHelp" class="form-text">Origen de vuelo</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoOrigen.invalid && campoOrigen.touched">
+                <div *ngIf="campoOrigen.errors?.['required']">
+                    Origen obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="destino" class="form-label">Destino</label>
+            <select required class="form-select" id="origen" [(ngModel)]="vuelo.destino" name="origen"
+                aria-describedby="destinoHelp" #campoDestino="ngModel">
+                <option value="{{destino.codigoIata}}" *ngFor="let destino of aeropuertos">{{destino.codigoIata}} -
+                    {{destino.nombre }}</option>
+            </select>
+            <div id="destinoHelp" class="form-text">Destino de vuelo</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoDestino.invalid && campoDestino.touched">
+                <div *ngIf="campoDestino.errors?.['required']">
+                    Destino obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="mb-5">
+            <label for="companias" class="form-label">Compañías</label>
+            <select required multiple class="form-select" id="companias" [(ngModel)]="vuelo.companias" name="companias"
+                aria-describedby="companiasHelp" #campoCompanias="ngModel">
+                <option value="{{compania.codigoIata}}" *ngFor="let compania of companias">{{compania.codigoIata}} -
+                    {{compania.nombre }}</option>
+            </select>
+            <div id="companiaHelp" class="form-text">Compañía de vuelo</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoCompanias.invalid && campoCompanias.touched">
+
+                <div *ngIf="campoCompanias.errors?.['required']">
+                    Selección de compañías obligatoria.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fechaDesde" class="form-label">Fecha desde</label>
+            <input type="text" class="form-control" id="fechaDesde" [(ngModel)]="vuelo.fechaDesde"
+                #campoFechaDesde="ngModel" required pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$"
+                name="fechaDesde" aria-describedby="fechaDesdeHelp">
+            <div id="fechaDesdeHelp" class="form-text">Fecha de inicio de viaje</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoFechaDesde.invalid && campoFechaDesde.touched">
+                <div *ngIf="campoFechaDesde.errors?.['required']">
+                    Fecha desde obligatoria.
+                </div>
+                <div *ngIf="campoFechaDesde.errors?.['pattern']">
+                    campo fecha desde tiene errores, el patrón debe ser "yyyy-mm-dd".
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="fechaHasta" class="form-label">Fecha hasta</label>
+            <input type="text" class="form-control" id="fechaHasta" [(ngModel)]="vuelo.fechaHasta"
+                #campoFechaHasta="ngModel" required pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$"
+                name="fechaHasta" aria-describedby="fechaHastaHelp">
+            <div id="fechaHastaHelp" class="form-text">Fecha de fin de viaje</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoFechaHasta.invalid && campoFechaHasta.touched">
+                <div *ngIf="campoFechaHasta.errors?.['required']">
+                    Fecha hasta obligatoria.
+                </div>
+                <div *ngIf="campoFechaDesde.errors?.['pattern']">
+                    Campo fecha hasta tiene errores, el patrón debe ser "yyyy-mm-dd".
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="duracion" class="form-label">Duración</label>
+            <input type="text" class="form-control" id="duracion" [(ngModel)]="duracionHoras" #campoDuracion="ngModel"
+                required pattern="^[+]?\d+([.]\d+)?$" name="duracion" aria-describedby="duracionHelp">
+            <div id="duracionHelp" class="form-text">Duración de viaje</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoDuracion.invalid && campoDuracion.touched">
+                <div *ngIf="campoDuracion.errors?.['required']">
+                    Campo duración obligatorio.
+                </div>
+                <div *ngIf="campoDuracion.errors?.['pattern']">
+                    Campo duración tiene errores, el número ingresado debe ser double con punto (.) o entero y mayor que
+                    0.
+                </div>
+            </div>
+        </div>
+        <button [disabled]="formulario.invalid" type="button" class="btn btn-primary mt-4"
+            (click)="darAltaVuelo()">Aceptar</button>
+    </form>
+</div>

@@ -1,0 +1,97 @@
+<div class="container">
+    <h1 class="fs-1 my-4">Crear Reserva</h1>
+    <form #formulario="ngForm">
+        <div class="mb-3">
+            <div class="mb-3">
+                <label for="origenDestino" class="form-label">Vuelo</label>
+                <select required class="form-select" id="origenDestino" [(ngModel)]="reserva.vuelo" name="origenDestino"
+                    aria-describedby="origenDestinoHelp" #campoOrigenDestino="ngModel">
+                    <option value="{{vuelo.id}}" *ngFor="let vuelo of vuelos">{{vuelo.origen}} -
+                        {{vuelo.destino}}</option>
+                </select>
+                <div id="origenDestinoHelp" class="form-text">Origen y destino de viaje</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoOrigenDestino.invalid && campoOrigenDestino.touched">
+                    <div *ngIf="campoOrigenDestino.errors?.['required']">
+                        Selección de vuelos obligatoria.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="text" class="form-control" id="fecha" [(ngModel)]="reserva.fecha" #campoFecha="ngModel"
+                    required pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" name="fecha"
+                    aria-describedby="fechaHelp">
+                <div id="fechaHelp" class="form-text">Fecha de inicio de viaje</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoFecha.invalid && campoFecha.touched">
+                    <div *ngIf="campoFecha.errors?.['required']">
+                        Fecha obligatoria.
+                    </div>
+                    <div *ngIf="campoFecha.errors?.['pattern']">
+                        campo fecha tiene errores, el patrón debe ser "yyyy-mm-dd".
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" [(ngModel)]="reserva.pasajero.nombre"
+                    #campoNombre="ngModel" required pattern="^[a-zA-ZáéíóúñÑ ]{3,10}$" name="nombre"
+                    aria-describedby="nombreHelp">
+                <div id="nombreHelp" class="form-text">Nombre</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoNombre.invalid && campoNombre.touched">
+                    <div *ngIf="campoNombre.errors?.['required']">
+                        Nombre obligatorio.
+                    </div>
+                    <div *ngIf="campoNombre.errors?.['pattern']">
+                        Campo nombre tiene errores.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" [(ngModel)]="reserva.pasajero.apellidos"
+                    #campoApellidos="ngModel" required pattern="^[a-zA-ZáéíóúñÑ ]{3,10}$" name="apellidos"
+                    aria-describedby="apellidosHelp">
+                <div id="apellidosHelp" class="form-text">Apellidos</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoApellidos.invalid && campoApellidos.touched">
+                    <div *ngIf="campoApellidos.errors?.['required']">
+                        Apellidos obligatorios.
+                    </div>
+                    <div *ngIf="campoApellidos.errors?.['pattern']">
+                        Campo Apellidos tiene errores.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" [(ngModel)]="reserva.pasajero.correo"
+                    #campoCorreo="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="correo"
+                    aria-describedby="correoHelp">
+                <div id="correoHelp" class="form-text">Correo</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoCorreo.invalid && campoCorreo.touched">
+                    <div *ngIf="campoCorreo.errors?.['pattern']">
+                        Correo tiene errores.
+                    </div>
+                    <div *ngIf="campoCorreo.errors?.['required']">
+                        Correo obligatorio.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="tel" class="form-control" id="telefono" [(ngModel)]="reserva.pasajero.telefono"
+                    #campoTelefono="ngModel" required pattern="^(?:[+\d].*\d|\d)$" name="telefono"
+                    aria-describedby="telefonoHelp">
+                <div id="telefonoHelp" class="form-text">Telefono</div>
+                <div class="badge bg-danger p-2 mt-2" *ngIf="campoTelefono.invalid && campoTelefono.touched">
+                    <div *ngIf="campoTelefono.errors?.['pattern']">
+                        Teléfono tiene errores.
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="formulario.invalid" type="button" class="btn btn-primary mt-4"
+                (click)="darAltaReserva()">Aceptar</button>
+
+        </div>
+    </form>
+</div>

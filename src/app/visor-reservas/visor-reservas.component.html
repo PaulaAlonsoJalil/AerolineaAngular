@@ -1,0 +1,59 @@
+<div class="container">
+    <h1 class="fs-1 my-4">Buscar reservas</h1>
+    <form #formulario="ngForm">
+        <div class="mb-3">
+            <label for="origen" class="form-label">Origen</label>
+            <select required class="form-select" id="origen" [(ngModel)]="origen" name="origen"
+                aria-describedby="origenHelp" #campoOrigen="ngModel">
+                <option value="{{origen.codigoIata}}" *ngFor="let origen of aeropuertos">{{origen.codigoIata}} -
+                    {{origen.nombre }}</option>
+            </select>
+            <div id="origenHelp" class="form-text">Origen de vuelo</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoOrigen.invalid && campoOrigen.touched">
+                <div *ngIf="campoOrigen.errors?.['required']">
+                    Origen obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="destino" class="form-label">Destino</label>
+            <select required class="form-select" id="origen" [(ngModel)]="destino" name="origen"
+                aria-describedby="destinoHelp" #campoDestino="ngModel">
+                <option value="{{destino.codigoIata}}" *ngFor="let destino of aeropuertos">{{destino.codigoIata}} -
+                    {{destino.nombre }}</option>
+            </select>
+            <div id="destinoHelp" class="form-text">Destino de vuelo</div>
+            <div class="badge bg-danger p-2 mt-2" *ngIf="campoDestino.invalid && campoDestino.touched">
+                <div *ngIf="campoDestino.errors?.['required']">
+                    Destino obligatorio.
+                </div>
+            </div>
+        </div>
+
+        <button [disabled]="formulario.invalid" type="button" class="btn btn-primary mt-4"
+            (click)="buscarCoincidenciaDeReservas()">Buscar</button>
+
+    </form>
+    <table *ngIf="reservasCoincidentes.length != 0" class="table table-striped my-4">
+        <thead>
+            <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Nombre y apellido</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr *ngFor="let reserva of reservasCoincidentes, index as indice">
+                <td>{{ vuelosCoincidentes[0].origen }}</td>
+                <td>{{ vuelosCoincidentes[0].destino }}</td>
+                <td>{{reserva.fecha}}</td>
+                <td>{{ reserva.pasajero.nombre}} {{reserva.pasajero.apellidos}}</td>
+                <td>{{reserva.pasajero.correo}}</td>
+                <td>{{reserva.pasajero.telefono}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

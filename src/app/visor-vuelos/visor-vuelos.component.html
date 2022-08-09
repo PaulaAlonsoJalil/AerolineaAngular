@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="fs-1 my-4">Vuelos Existentes</h1>
+    <table *ngIf="vuelos.length != 0" class="table" >
+        <thead>
+            <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Compañías</th>
+                <th>Fecha desde</th>
+                <th>Fecha hasta</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vuelo of vuelos, index as indice"
+            >
+                <td>{{ vuelo.origen }}</td>
+                <td>{{ vuelo.destino }}</td>
+                <td>{{ vuelo.companias }}</td>
+                <td>{{ vuelo.fechaDesde }}</td>
+                <td>{{ vuelo.fechaHasta }}</td>
+                <td>
+                    <button (click)="borrarVuelo(indice)" class="btn btn-primary">Borrar</button>
+                </td>
+            </tr>            
+        </tbody>
+    </table>
+</div>
